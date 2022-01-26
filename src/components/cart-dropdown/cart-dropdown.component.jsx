@@ -4,18 +4,25 @@ import './cart-dropdown.styles.scss';
 import { connect } from 'react-redux';
 import store from "../../redux/store";
 import CartItem from "../cart-item/cart-item.component";
+import { withRouter } from "react-router-dom";
+import { toggleCartHidden } from "../../redux/cart/cart.actions";
 
 const CartDropdown = props => {
     console.log('cartdropdown render')
+    console.log('props', props)
     return (
         !props.cartHidden && <div className="cart-dropdown">
             <div className="cart-items">
                 {
+                    props.cartItems.length ?
                     props.cartItems.map(item => (
                         <CartItem key={item.id} item={item} />
                     ))
+                    :
+                    <span className="empty-message">Your cart is empty</span>
                 }
-                <CustomButton>GO TO CHECKOUT</CustomButton>
+                
+                <CustomButton onClick={() => {props.history.push('/checkout');props.dispatch(toggleCartHidden())}}>GO TO CHECKOUT</CustomButton>
             </div>
         </div>
     )
@@ -48,4 +55,4 @@ const mapStateToProps = state => {
 }
 
 
-export default connect(mapStateToProps)(CartDropdown);
+export default connect(mapStateToProps)(withRouter(CartDropdown));
