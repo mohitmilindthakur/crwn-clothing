@@ -7,4 +7,4 @@ export const addItemToCart = (cartItems, cartItemToAdd) => {
     let newCartItems = [...cartItems]
     newCartItems[foundIndex].quantity += 1
     return newCartItems;
-}
+}   

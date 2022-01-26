@@ -9,3 +9,7 @@ export const toggleCartHidden = () => {
 export const addItem = item => {
     return { type: cartTypes.ADD_ITEM, payload: item }
 }
+
+export const removeItem = id => {
+    return {type: cartTypes.REMOVE_ITEM, payload: id}
+}
