@@ -43,7 +43,7 @@ class App extends React.Component {
         <Header testing={this.state.key} />
         <Switch>
           <Route exact path="/" component={HomePage} />
-          <Route exact path="/shop" component={ShopPage} />
+          <Route path="/shop" component={ShopPage} />
           <Route exact path="/sign-in" render={() => this.props.currentUser ? <Redirect to='/' /> : <SigninAndSignup />} />
           <Route exact path="/checkout" component={CheckoutPage} />
         </Switch>

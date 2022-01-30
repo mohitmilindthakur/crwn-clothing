@@ -2,17 +2,25 @@ import React from "react";
 import './directory.styles.scss'
 
 import MenuItem from '../../components/menu-item/menu-item.component';
-import data from "./data";
+import { connect } from 'react-redux';
 
 
-export default function Directory(props) {
+function Directory({ directory }) {
     return (
         <div className='directory-menu'>
             {
-                data.map(item => (
+                directory.map(item => (
                     <MenuItem key={item.id} item={item} />
                 ))
             }
         </div>
     )
 }
+
+const mapStateToProps = (state) => {
+    return {
+        directory: state.directory.data
+    }
+}
+
+export default connect(mapStateToProps)(Directory);
